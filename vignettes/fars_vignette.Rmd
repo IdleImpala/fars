@@ -1,0 +1,40 @@
+---
+title: "fars: datasets and functions about car accidents"
+author: "IdleImpala"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{"fars: datasets and functions about certain car accidents"}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE,comment = "#>",echo=TRUE)
+```
+
+```{r}
+library(fars)
+```
+
+##Introduction
+
+The functions in this package use data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System and produce summary statistics and map visualizations. Sample data can be downloaded here:
+
+https://d3c33hcgiwev3.cloudfront.net/_e1adac2a5f05192dc8780f3944feec13_fars_data.zip?Expires=1553990400&Signature=WETh6sqM548wWMwbOTYisEj~BMR6SAYHu3eY9iLL5j~3oxH5cXQWBqcXy7lZiCjLH-I41skDlSesw~s-DKZtlSywmTcdr6lTxbqM-EMP5Sj5QRJp8dNWdtuEc6TTjQiwN3scMKGO3ePnN1iG3WL1kyxgjf-nzPhAnWvBHQPL-l4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A
+
+Download the data files from the link above and extract them into your working directory. This is important, the functions only work if the extracted .csv.bz2 files are in your working directory.
+
+##Examples
+
+Let's produce a summary of the years 2013,2014,2015. 
+
+```{r}
+fars_summarize_years(c(2013,2014,2015))
+```
+
+It would be interesting to see the accidents on a map. Let's print accidents for 2013 in California, USA.
+
+```{r}
+fars_map_state(6,2013)
+```

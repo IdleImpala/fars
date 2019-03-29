@@ -1,11 +1,3 @@
-#Review criteria:
-#what each function does, in general terms;
-#the function arguments (inputs);
-#each function's return value;
-#conditions that may result in an error;
-#functions that need to be imported from external packages;
-#examples of each function's usage
-
 #' Read file
 #'
 #' The function reads a file.
@@ -44,6 +36,7 @@ fars_read <- function(filename) {
 #' which then prints a standard filename that also contains the year which was specified.
 #' @examples
 #' make_filename(2019)
+#' @export
 make_filename <- function(year) {
         year <- as.integer(year)
         sprintf("accident_%d.csv.bz2", year)
