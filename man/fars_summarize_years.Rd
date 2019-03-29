@@ -23,8 +23,7 @@ and summarizes for each month of each year.
 The function will give an error fars_read_years() would give an error.
 }
 \examples{
-setwd("./data")
-fars_summarize_years(2013)
-fars_summarize_years(c(2013,2014))
-setwd("../")
+\dontrun{
+fars_summarize_years(c(2013,2014,2015))
+}
 }

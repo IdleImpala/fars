@@ -11,9 +11,9 @@
 #' @importFrom dplyr tbl_df
 #'
 #' @examples
-#' data(accident_2013)
-#' write.csv(accident_2013,"test.csv",row.names=FALSE)
-#' fars_read("test.csv")
+#' \dontrun{
+#' fars_read(make_filename(2013))
+#' }
 #' @export
 fars_read <- function(filename) {
         if(!file.exists(filename))
@@ -35,7 +35,7 @@ fars_read <- function(filename) {
 #' If successful, the function passes the outcome to the sprintf function,
 #' which then prints a standard filename that also contains the year which was specified.
 #' @examples
-#' make_filename(2019)
+#' make_filename(2013)
 #' @export
 make_filename <- function(year) {
         year <- as.integer(year)
@@ -48,23 +48,23 @@ make_filename <- function(year) {
 #' For each data file, it adds the year to the data frame as a new variable,
 #' and then extracts the MONTH, and year variables of the data frame.
 #'
-#'  @param year An integer number to be passed to the standard filename.
-#'  @return The function returns a list of data frames.
-#'  @details The function uses lapply on the vector of arguments.
-#'  For each element of the vector, it attempts to create a filename with make_filename(),
-#'  read the file with fars_read(), add the year variable with dplyr::mutate(),
-#'  and finally select the variables with dplyr:select(). fars_read() and the dplyr functions
-#'  are wrapped in a tryCatch() function, which will print an error and return NULL when an
-#'  element of the vector of years is invalid.
+#' @param years An integer number to be passed to the standard filename.
+#' @return The function returns a list of data frames.
+#' @details The function uses lapply on the vector of arguments.
+#' For each element of the vector, it attempts to create a filename with make_filename(),
+#' read the file with fars_read(), add the year variable with dplyr::mutate(),
+#' and finally select the variables with dplyr:select(). fars_read() and the dplyr functions
+#' are wrapped in a tryCatch() function, which will print an error and return NULL when an
+#' element of the vector of years is invalid.
 #'
-#'  @importFrom dplyr mutate
-#'  @importFrom dplyr select
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
 #'
-#'  @examples
-#'  setwd("./data")
-#'  head(fars_read_years(2013),10)
-#'  setwd("../")
-#'  @export
+#' @examples
+#' \dontrun{
+#' fars_read_years(2013)
+#' }
+#' @export
 fars_read_years <- function(years) {
         lapply(years, function(year) {
                 file <- make_filename(year)
@@ -95,12 +95,12 @@ fars_read_years <- function(years) {
 #' @importFrom dplyr group_by
 #' @importFrom dplyr summarize
 #' @importFrom tidyr spread
+#' @importFrom magrittr %>%
 #'
 #' @examples
-#' setwd("./data")
-#' fars_summarize_years(2013)
-#' fars_summarize_years(c(2013,2014))
-#' setwd("../")
+#' \dontrun{
+#' fars_summarize_years(c(2013,2014,2015))
+#' }
 #' @export
 fars_summarize_years <- function(years) {
         dat_list <- fars_read_years(years)
@@ -127,11 +127,9 @@ fars_summarize_years <- function(years) {
 #'@importFrom graphics points
 #'
 #'@examples
-#'data(accident_2013)
-#'unique(accident_2013$STATE)
-#'setwd("./data")
+#'\dontrun{
 #'fars_map_state(6,2013)
-#'setwd("../")
+#'}
 #'@export
 fars_map_state <- function(state.num, year) {
         filename <- make_filename(year)

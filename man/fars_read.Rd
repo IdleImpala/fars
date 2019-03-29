@@ -21,7 +21,7 @@ it reads it (also suppresses any messages that might be printed),
 if it doesn't exist, it throws an error message.
 }
 \examples{
-data(accident_2013)
-write.csv(accident_2013,"test.csv",row.names=FALSE)
-fars_read("test.csv")
+\dontrun{
+fars_read(make_filename(2013))
+}
 }

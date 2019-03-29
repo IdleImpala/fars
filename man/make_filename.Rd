@@ -22,5 +22,5 @@ If successful, the function passes the outcome to the sprintf function,
 which then prints a standard filename that also contains the year which was specified.
 }
 \examples{
-make_filename(2019)
+make_filename(2013)
 }

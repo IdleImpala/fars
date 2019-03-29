@@ -24,9 +24,7 @@ read. The function uses make_filename(), fars_read(), so it can produce an error
 whenever these funtions would.
 }
 \examples{
-data(accident_2013)
-unique(accident_2013$STATE)
-setwd("./data")
+\dontrun{
 fars_map_state(6,2013)
-setwd("../")
+}
 }

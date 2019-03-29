@@ -6,27 +6,27 @@
 \usage{
 fars_read_years(years)
 }
+\arguments{
+\item{years}{An integer number to be passed to the standard filename.}
+}
+\value{
+The function returns a list of data frames.
+}
 \description{
 The function reads data files based on a vector of years given.
 For each data file, it adds the year to the data frame as a new variable,
 and then extracts the MONTH, and year variables of the data frame.
 }
 \details{
-@param year An integer number to be passed to the standard filename.
- @return The function returns a list of data frames.
- @details The function uses lapply on the vector of arguments.
- For each element of the vector, it attempts to create a filename with make_filename(),
- read the file with fars_read(), add the year variable with dplyr::mutate(),
- and finally select the variables with dplyr:select(). fars_read() and the dplyr functions
- are wrapped in a tryCatch() function, which will print an error and return NULL when an
- element of the vector of years is invalid.
-
-@importFrom dplyr mutate
- @importFrom dplyr select
-
-@examples
- setwd("./data")
- head(fars_read_years(2013),10)
- setwd("../")
- @export
+The function uses lapply on the vector of arguments.
+For each element of the vector, it attempts to create a filename with make_filename(),
+read the file with fars_read(), add the year variable with dplyr::mutate(),
+and finally select the variables with dplyr:select(). fars_read() and the dplyr functions
+are wrapped in a tryCatch() function, which will print an error and return NULL when an
+element of the vector of years is invalid.
+}
+\examples{
+\dontrun{
+fars_read_years(2013)
+}
 }
