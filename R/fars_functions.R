@@ -11,7 +11,9 @@
 #' @importFrom dplyr tbl_df
 #'
 #' @examples
-#' fars_read("accident_2013.csv.bz2")
+#' data(accident_2013)
+#' write.csv(accident_2013,"test.csv",row.names=FALSE)
+#' fars_read("test.csv")
 #' @export
 fars_read <- function(filename) {
         if(!file.exists(filename))
