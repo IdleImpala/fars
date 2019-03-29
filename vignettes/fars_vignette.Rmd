@@ -1,5 +1,5 @@
 ---
-title: "fars: datasets and functions about certain car accidents"
+title: "fars: datasets and functions about car accidents"
 author: "IdleImpala"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -10,40 +10,31 @@ vignette: >
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(collapse = TRUE,comment = "#>",echo=TRUE, eval=FALSE)
+knitr::opts_chunk$set(collapse = TRUE,comment = "#>",echo=TRUE)
+```
+
+```{r}
+library(fars)
 ```
 
 ##Introduction
 
-##Using the package
+The functions in this package use data from the US National Highway Traffic Safety Administration's Fatality Analysis Reporting System and produce summary statistics and map visualizations. Sample data can be downloaded here:
 
-Let's import an example dataset from the package
+https://d3c33hcgiwev3.cloudfront.net/_e1adac2a5f05192dc8780f3944feec13_fars_data.zip?Expires=1553990400&Signature=WETh6sqM548wWMwbOTYisEj~BMR6SAYHu3eY9iLL5j~3oxH5cXQWBqcXy7lZiCjLH-I41skDlSesw~s-DKZtlSywmTcdr6lTxbqM-EMP5Sj5QRJp8dNWdtuEc6TTjQiwN3scMKGO3ePnN1iG3WL1kyxgjf-nzPhAnWvBHQPL-l4_&Key-Pair-Id=APKAJLTNE6QMUY6HBC5A
 
-```{r}
-data(accident_2013)
-```
+Download the data files from the link above and extract them into your working directory. This is important, the functions only work if the extracted .csv.bz2 files are in your working directory.
 
-The main functions within the package require a certain data title format. This is provided by the `make_filename()7 function.
+##Examples
 
-```{r}
-make_filename(2013)
-```
-
-Let's export export our dataset with the appropriate title format
+Let's produce a summary of the years 2013,2014,2015. 
 
 ```{r}
-write.csv(accident_2013, make_filename(2013),row.names=FALSE)
+fars_summarize_years(c(2013,2014,2015))
 ```
 
-Let's produce a summary of the year 2013.
-
-```{r}
-fars_summarize_years(2013)
-```
-
-It would be nice to see these accidents on a map. Let's print it for one of the states.
+It would be interesting to see the accidents on a map. Let's print accidents for 2013 in California, USA.
 
 ```{r}
 fars_map_state(6,2013)
 ```
-
